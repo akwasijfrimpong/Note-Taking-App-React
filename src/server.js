@@ -26,4 +26,18 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(5001, () => console.log("Server running on port 5000"));
+app.post("/post", async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log("we are here");
+    db.query(`INSERT INTO notes (title, description) VALUES ($1, $2)`, [
+      req.body.title,
+      req.body.description,
+    ]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+app.listen(5001, () => console.log("Server running on port 5001"));
