@@ -40,4 +40,15 @@ app.post("/post", async (req, res) => {
   }
 });
 
+app.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id, "we are here", "req");
+    db.query(`DELETE FROM notes WHERE id = $1`, [id]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 app.listen(5001, () => console.log("Server running on port 5001"));

@@ -13,9 +13,9 @@ function App() {
   };
   return (
     <div className="App">
-      <h1>Take A Note</h1>
+      <h1 className="text-white">Take A Note</h1>
       <NoteInput refreshNotes={refreshNotes} />
-      <Notes refresh={refresh} />
+      <Notes refresh={refresh} refreshedNotes={refreshNotes} />
     </div>
   );
 }
