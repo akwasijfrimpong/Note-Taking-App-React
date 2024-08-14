@@ -25,6 +25,13 @@ app.get("/", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+app.get("/byId/:id", async (req, res) => {
+  console.log(req.params.id, "id akwasi");
+  const results = await db.query(`SELECT * FROM notes WHERE id = $1`, [
+    req.params.id,
+  ]);
+  res.json(results.rows);
+});
 
 app.post("/post", async (req, res) => {
   try {
@@ -39,11 +46,24 @@ app.post("/post", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+app.put("/update/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description } = req.body;
+    db.query(`UPDATE notes SET title = $1, description = $2 WHERE id = $3`, [
+      title,
+      description,
+      id,
+    ]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+}); // Update a note
 
 app.delete("/delete/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id, "we are here", "req");
     db.query(`DELETE FROM notes WHERE id = $1`, [id]);
   } catch (err) {
     console.error(err.message);
