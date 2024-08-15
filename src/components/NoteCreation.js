@@ -17,23 +17,25 @@ export default function Note(props) {
   };
 
   return (
-    <div>
+    <div className="border-2 border-solid border-orange-300">
       <form className={styles.container}>
         <input
           type="text"
           placeholder="Title"
-          style={{ width: "400px" }}
           id="title"
           onChange={(event) => setTitle(event.target.value)}
+          className="bg-orange-300 w-[400px]"
         />
         <input
           type="text"
           placeholder="Description"
-          className={styles.description}
+          className={`bg-orange-300 ${styles.description}`}
           id="description"
           onChange={(event) => setDescription(event.target.value)}
         />
-        <button onClick={post}>Submit</button>
+        <button onClick={post} className="bg-blue-500 w-[200px] text-white">
+          Submit
+        </button>
       </form>
     </div>
   );
