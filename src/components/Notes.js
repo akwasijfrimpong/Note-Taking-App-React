@@ -22,11 +22,11 @@ export default function Notes(props) {
 
   return (
     <div className="relative">
-      <div className={styles.notes}>
+      <div className={`${styles.notes}`}>
         {notes.map((note) => (
           <div
             key={note.id}
-            className="h-[200px] w-[200px] max-w-[600px] max-h-[600px] border-[0.5px] border-gray-10 text-left pl-2 pr-2 rounded-md relative"
+            className="h-[200px] w-[200px] bg-orange-300  max-w-[600px] max-h-[600px] border-[0.5px] border-gray-10 text-left pl-2 pr-2 rounded-md relative"
           >
             <h1 className="font-bold pt-2 pl-2 pr-2">{note.title}</h1>
             <p className="pt-4 pl-2 pr-2">{note.description}</p>
